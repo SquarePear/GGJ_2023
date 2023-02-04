@@ -1,9 +1,11 @@
+class_name Root
 extends Node2D
+
+signal reached_goal(points)
 
 var _noise = FastNoiseLite.new()
 var _intersecting = false
 var _to_die = 0
-var _active = true
 
 @onready var _line: Line2D = $Line2D
 @onready var _line_segment_timer = $LineSegmentTimer
@@ -19,9 +21,6 @@ func _ready():
 
 
 func _process(delta):
-	if not _active:
-		return
-
 	_move_root_tip(delta)
 	_update_line_root_tip()
 
@@ -116,12 +115,16 @@ func _detect_intersection():
 
 
 func _step_death():
+	if _line.get_point_count() <= 2:
+		_to_die = 0
+		_restart(_line.get_points())
+		return
+
 	_to_die -= 1
 	_line.remove_point(_line.get_point_count() - 1)
 
 	if _to_die == 0:
 		_restart(_line.get_points())
-		_intersecting = false
 
 
 func _restart(points: Array):
@@ -133,7 +136,31 @@ func _restart(points: Array):
 
 	_root_tip.global_position = last_point
 	_root_tip.global_rotation = angle
+	_intersecting = false
+
+
+func set_position(position: Vector2):
+	_root_tip.global_position = position
 
 
 func get_position() -> Vector2:
 	return _root_tip.global_position
+
+
+func get_last_postion() -> Vector2:
+	return _line.get_point_position(_line.get_point_count() - 2)
+
+
+func _on_root_tip_area_entered(area):
+	var obstacle = area.get_parent() as Obstacle
+
+	if not obstacle is Obstacle:
+		return
+
+	if obstacle.is_bad():
+		_to_die = 24
+		_intersecting = true
+	else:
+		set_process(false)
+		set_physics_process(false)
+		self.emit_signal("reached_goal", _line.get_points())

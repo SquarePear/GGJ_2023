@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bumflo71tudpp"]
+[gd_scene load_steps=4 format=3 uid="uid://bumflo71tudpp"]
 
 [ext_resource type="Script" path="res://Root/Root.gd" id="1_66rg5"]
 
@@ -6,6 +6,9 @@
 max_value = 3.0
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.5, 2), -2.0, -3.0, 1, 1, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulw5d"]
+radius = 5.0
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_66rg5")
@@ -18,4 +21,9 @@ z_index = -999
 width_curve = SubResource("Curve_ivduv")
 default_color = Color(0.188235, 0.45098, 0.223529, 1)
 
-[node name="RootTip" type="Node2D" parent="."]
+[node name="RootTip" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RootTip"]
+shape = SubResource("CircleShape2D_ulw5d")
+
+[connection signal="area_entered" from="RootTip" to="." method="_on_root_tip_area_entered"]
