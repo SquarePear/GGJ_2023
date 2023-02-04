@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bumflo71tudpp"]
+
+[ext_resource type="Script" path="res://Root/Root.gd" id="1_66rg5"]
+
+[sub_resource type="Curve" id="Curve_ivduv"]
+max_value = 3.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.5, 2), -2.0, -3.0, 1, 1, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_66rg5")
+
+[node name="LineSegmentTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -999
+width_curve = SubResource("Curve_ivduv")
+default_color = Color(0.188235, 0.45098, 0.223529, 1)
+
+[node name="RootTip" type="Node2D" parent="."]

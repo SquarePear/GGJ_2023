@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqgxrqo7wa3mp"]
+
+[ext_resource type="Script" path="res://Game/Game.gd" id="1_mnmv5"]
+[ext_resource type="PackedScene" uid="uid://cjpov75mdy530" path="res://GUI/GUI.tscn" id="2_wg2db"]
+[ext_resource type="PackedScene" uid="uid://bumflo71tudpp" path="res://Root/Root.tscn" id="3_gajve"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_mnmv5")
+
+[node name="GUI" parent="." instance=ExtResource("2_wg2db")]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Root" parent="." instance=ExtResource("3_gajve")]
