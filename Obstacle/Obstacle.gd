@@ -13,12 +13,16 @@ func _ready():
 	var random_scale = randf() * 0.5 + 0.5
 	scale = Vector2(random_scale, random_scale)
 
-	_bad = randf() < 0.5
+	set_bad(randi() % 2 == 0)
+
+
+func set_bad(bad):
+	_bad = bad
 
 	if _bad:
-		_sprite.modulate = Color(1.0, 0.2, 0.2)
+		_sprite.texture = load("res://Obstacle/ObstacleBad.png")
 	else:
-		_sprite.modulate = Color(0.2, 1.0, 0.2)
+		_sprite.texture = load("res://Obstacle/ObstacleGood.png")
 
 
 func detect_line_collision(line_start, line_end):
@@ -27,6 +31,7 @@ func detect_line_collision(line_start, line_end):
 	line.add_point(line_end)
 	var collision = _collider.collide_shape(line, Vector2.ZERO)
 	line.free()
+
 	return collision
 
 

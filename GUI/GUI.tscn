@@ -12,10 +12,3 @@ grow_vertical = 2
 script = ExtResource("1_7pgrn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 43.0
-offset_top = 344.0
-offset_right = 1925.0
-offset_bottom = 1085.0

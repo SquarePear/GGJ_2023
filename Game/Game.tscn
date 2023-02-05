@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqgxrqo7wa3mp"]
+[gd_scene load_steps=6 format=3 uid="uid://cqgxrqo7wa3mp"]
 
 [ext_resource type="Script" path="res://Game/Game.gd" id="1_mnmv5"]
 [ext_resource type="PackedScene" uid="uid://cjpov75mdy530" path="res://GUI/GUI.tscn" id="2_wg2db"]
+[ext_resource type="Texture2D" uid="uid://bjof6lu4gjgb5" path="res://icon.svg" id="3_16wh3"]
+[ext_resource type="Texture2D" uid="uid://c6pg7csheleig" path="res://Game/Glow.png" id="4_lebob"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_rcu7j"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
@@ -12,3 +16,19 @@ script = ExtResource("1_mnmv5")
 [node name="Roots" type="Node2D" parent="."]
 
 [node name="Obstacles" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+z_index = -999
+position = Vector2(960, 604)
+scale = Vector2(1920, 952)
+mesh = SubResource("QuadMesh_rcu7j")
+texture = ExtResource("3_16wh3")
+
+[node name="RootTracker" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.184314, 0.705882, 0.588235, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_lebob")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
