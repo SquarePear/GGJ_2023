@@ -10,8 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Global Game Jam 2023"
-run/main_scene="res://Game/Game.tscn"
+config/name="Rooted"
+config/description="A game where you build your roots in the ground to collect nutrients"
+run/main_scene="res://MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
@@ -24,4 +25,4 @@ window/stretch/mode="viewport"
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.278431, 0.2, 0.113725, 1)
+environment/defaults/default_clear_color=Color(0.231373, 0.227451, 0.270588, 1)

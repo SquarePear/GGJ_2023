@@ -13,8 +13,6 @@ func _ready():
 	var random_scale = randf() * 0.5 + 0.5
 	scale = Vector2(random_scale, random_scale)
 
-	set_bad(randi() % 2 == 0)
-
 
 func set_bad(bad):
 	_bad = bad

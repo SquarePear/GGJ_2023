@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjpov75mdy530"]
+[gd_scene load_steps=3 format=3 uid="uid://cjpov75mdy530"]
 
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="1_7pgrn"]
+[ext_resource type="Texture2D" uid="uid://b7rxw0xrkese7" path="res://GUI/Heart.png" id="2_jxc5n"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -12,3 +13,62 @@ grow_vertical = 2
 script = ExtResource("1_7pgrn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lives" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 520.0
+offset_bottom = 115.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Lives:"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Lives"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 137.0
+offset_top = 4.0
+offset_right = 201.0
+offset_bottom = 68.0
+texture = ExtResource("2_jxc5n")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Lives"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 201.0
+offset_top = 4.0
+offset_right = 265.0
+offset_bottom = 68.0
+texture = ExtResource("2_jxc5n")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Lives"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 265.0
+offset_top = 4.0
+offset_right = 329.0
+offset_bottom = 68.0
+texture = ExtResource("2_jxc5n")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Lives"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 329.0
+offset_top = 4.0
+offset_right = 393.0
+offset_bottom = 68.0
+texture = ExtResource("2_jxc5n")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Lives"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 393.0
+offset_top = 4.0
+offset_right = 457.0
+offset_bottom = 68.0
+texture = ExtResource("2_jxc5n")
+expand_mode = 1

@@ -91,4 +91,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### Global Game Jam ###
+build/
+
 # End of https://www.toptal.com/developers/gitignore/api/godot,macos,linux,windows

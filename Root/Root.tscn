@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bumflo71tudpp"]
 
 [ext_resource type="Script" path="res://Root/Root.gd" id="1_66rg5"]
-[ext_resource type="AudioStream" uid="uid://c3y6n8nrj5qgk" path="res://Root/dig.ogg" id="2_fue3x"]
+[ext_resource type="AudioStream" uid="uid://deqws55362i40" path="res://Root/Dig.ogg" id="2_t4nwy"]
 
-[sub_resource type="Curve" id="Curve_ivduv"]
+[sub_resource type="Curve" id="Curve_veob1"]
 max_value = 3.0
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.5, 2), -2.0, -3.0, 1, 1, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ulw5d"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bc26q"]
 radius = 5.0
 
 [node name="Root" type="Node2D"]
@@ -19,16 +19,16 @@ wait_time = 0.1
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -99
-width_curve = SubResource("Curve_ivduv")
+width_curve = SubResource("Curve_veob1")
 default_color = Color(0.188235, 0.45098, 0.223529, 1)
 
 [node name="RootTip" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RootTip"]
-shape = SubResource("CircleShape2D_ulw5d")
+shape = SubResource("CircleShape2D_bc26q")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RootTip"]
-stream = ExtResource("2_fue3x")
+stream = ExtResource("2_t4nwy")
 autoplay = true
 
 [connection signal="area_entered" from="RootTip" to="." method="_on_root_tip_area_entered"]

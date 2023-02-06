@@ -21,6 +21,9 @@ func _ready():
 
 
 func _process(delta):
+	if _to_die > 0 or _intersecting:
+		return
+
 	_move_root_tip(delta)
 	_update_line_root_tip()
 
@@ -95,30 +98,26 @@ func _detect_intersection():
 	var point: Vector2 = _root_tip.global_position
 	var points := _line.get_points()
 
-	if points.size() <= 4:
-		return
-
 	var last_usable_point := points[points.size() - 2]
 
-	for i in range(points.size() - 4):
-		var intersection := Geometry2D.segment_intersects_segment(
-			last_usable_point, point, points[i], points[i + 1]
-		)
+	if points.size() > 4:
+		for i in range(points.size() - 3):
+			var intersection := Geometry2D.segment_intersects_segment(
+				last_usable_point, point, points[i], points[i + 1]
+			)
 
-		if intersection:
-			_to_die = points.size() - i - 1
-			return intersection
+			if intersection:
+				_to_die = points.size() - i - 1
+				return intersection
 
-	return _detect_intersection_with_previous_roots(last_usable_point)
+	if points.size() > 2:
+		return _detect_intersection_with_previous_roots(last_usable_point)
 
 
 func _detect_intersection_with_previous_roots(last_usable_point: Vector2):
 	var point: Vector2 = _root_tip.global_position
 
 	for points in _previous_roots:
-		if points.size() <= 4:
-			continue
-
 		for i in range(points.size() - 1):
 			var intersection := Geometry2D.segment_intersects_segment(
 				last_usable_point, point, points[i], points[i + 1]

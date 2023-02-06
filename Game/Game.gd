@@ -1,8 +1,13 @@
+class_name Game
 extends Node2D
+
+signal lives_changed(lives)
 
 var _root = null
 var _points: PackedVector2Array = []
 var _previous_roots := []
+
+var _lives = 5
 
 @onready var _roots = $Roots
 @onready var _obstacles = $Obstacles
@@ -13,6 +18,8 @@ var _previous_roots := []
 func _ready():
 	_initialize_root()
 	_initialize_obstacles()
+
+	RenderingServer.set_default_clear_color(Color("#47331d"))
 
 	_root.set_tip_position(Vector2(get_viewport_rect().size.x / 2, 128), PI / 2, false)
 
@@ -45,12 +52,14 @@ func _input(event):
 
 
 func _initialize_obstacles():
-	for i in 25:
+	for i in 30:
 		var obstacle = preload("res://Obstacle/Obstacle.tscn").instantiate()
 		obstacle.position = Vector2(
 			randf_range(0, get_viewport_rect().size.x), randf_range(192, get_viewport_rect().size.y)
 		)
 		_obstacles.add_child(obstacle)
+
+		obstacle.set_bad(i % 5 <= 1)
 
 
 func _initialize_root():
@@ -81,6 +90,15 @@ func _check_game_over():
 	_root_tracker.visible = false
 
 
+func set_lives(lives):
+	_lives = lives
+	self.emit_signal("lives_changed", lives)
+
+	if lives <= 0:
+		_save_screenshot()
+		get_tree().reload_current_scene()
+
+
 func _save_screenshot():
 	# Wait two frames to make sure the obstacles are gone
 	await get_tree().process_frame
@@ -98,6 +116,7 @@ func _on_root_hit_obstacle(obstacle):
 	if obstacle.is_bad():
 		_audio_player.stream = preload("res://Game/Bump.ogg")
 		_audio_player.play()
+		set_lives(_lives - 1)
 	else:
 		_audio_player.stream = preload("res://Game/Collect.ogg")
 		_audio_player.play()

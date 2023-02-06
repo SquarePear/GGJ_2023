@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Obstacle/Obstacle.gd" id="1_vwwmn"]
 [ext_resource type="Texture2D" uid="uid://bjof6lu4gjgb5" path="res://icon.svg" id="2_a3ep2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3iph"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2onea"]
 size = Vector2(64, 64)
 
 [node name="Obstacle" type="Node2D"]
@@ -16,4 +16,4 @@ texture = ExtResource("2_a3ep2")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_w3iph")
+shape = SubResource("RectangleShape2D_2onea")
